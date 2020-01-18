@@ -1,34 +1,15 @@
-baseurl = "http://replace-this-with-your-hugo-site.com/"
+baseurl = "https://www.ahsht.io/"
 languageCode = "en-us"
-title = "Hugo Creative Theme"
+title = "Ah, Sht"
 theme = "theme"
 
 [params]
-
-	# You can use Markdown syntax for urls [text](//url.to/source) for
-	# most longer texts.
-
-	# All icons using Fontawesome's icon font. Look at fortawesome.github.io/Font-Awesome/icons/
-	# for more icons. The icons are represented by their corresponding
-	# CSS class.
-
-	# All projects of the portfolio are defined in their own files.
-	# You can find example projects at 'exampleSite/data/projects'. Copy the 'projects'
-	# folder into the 'data' directory at the root of this Hugo site.
-	# For more informtion take a look at the README.
-
-	# To provide some metadata for search engines feel free to add a few
-    # information about you and your website.
-	name = "Your name"
-	description = "Your description"
-
 	# The path must be relative to the static folder
 	favicon = "favicon.ico"
 
-
 	# Navigation
 	[params.navigation]
-		brand = "Hugo Creative Theme"
+		brand = "Ah, Sht"
 
 		[params.navigation.links]
 			about     = "About"
@@ -40,8 +21,8 @@ theme = "theme"
 	# Hero section
 	[params.hero]
 		# To change the background of the hero section, replace the 'header.jpg' at './static/img' with your own.
-		slogan     = "Your awesome slogan"
-		subtitle   = "[Lorem](//google.com) ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis nesciunt consequatur ut nihil voluptatem fugiat eos eveniet alias in veniam?"
+		slogan     = "Sht Happens. Let's make the best of it."
+		subtitle   = "Ah Sht is a set of services that is designed to help coordinate, remediate and understand software incidents."
 		buttonText = "Find out more"
 
 

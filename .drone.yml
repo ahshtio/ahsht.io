@@ -1,0 +1,60 @@
+---
+kind: pipeline
+name: container
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: container
+    image: r.j3ss.co/img
+    privileged: true
+    environment:
+      GOOGLE_SERVICE_ACCOUNT:
+        from_secret: google_credentials
+    commands:
+      - img login -u _json_key -p "$GOOGLE_SERVICE_ACCOUNT" https://gcr.io
+      - |
+          img build \
+            --file build/container/Dockerfile \
+            --tag "gcr.io/ahshtio/by-githash/ahsht.io:${DRONE_COMMIT}" \
+            --tag "container.pkg.ahsht.io/by-githash/ahsht.io:${DRONE_COMMIT}" \
+            .
+
+      - img push gcr.io/ahshtio/by-githash/ahsht.io:${DRONE_COMMIT}
+
+
+trigger:
+  ref:
+    - refs/heads/master
+    - refs/heads/**
+
+---
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: deploy
+    image: oliver006/drone-cloud-run:latest
+    pull: always
+    settings:
+      action: deploy
+      service: ahsht-io
+      image: "gcr.io/ahshtio/by-githash/ahsht.io:${DRONE_COMMIT}"
+      memory: 64Mi
+      region: europe-west1
+      allow_unauthenticated: true
+      token:
+        from_secret: google_credentials
+
+trigger:
+  ref:
+    - refs/heads/master
+
+depends_on:
+  - container
